@@ -69,11 +69,37 @@ Depending on your requirements, you may choose to deploy additional network infr
 
 ![vwan](./media/clip_image078.jpg)
 
+### Deploying networking resources in an additional region
+
+In this blade, you will also configure a secondary region for networking platform resource.  This secondary platform network deployment prepares you you to take advantage of capacity in multiple regions, and for recovery or multi-region high availability.
+
+To do so, select "Additional virtual WAN hub" in the Extend your network into a second region option.
+
+![img](./media/clip_image080.png)
+
+You will need to specify the additional region to deploy to, and then you will be given the option to repeat many of the decisions above.  For best results, use similar inputs to make sure that your regional deployments can both support the same architecture.  However, if you want to forgo deploying a gateway or firewall in the second region, you can select the appropriate options.
+
+![img](./media/clip_image084.png)
+
+One area where the deployment may differ between regions is with private DNS zones.
+
+![img](./media/clip_image082.png)
+
+If you choose to deploy zones for both regions, you will receive two sets of the DNS zones.  This allows for private endpoints in different regions to be associated to the same resource.
+
+However, if you choose to deploy zones only for the primary region, then you will only have one set of private DNS zones.  Only one host name per resource will be able to be used, preventing you from having multiple private endpoints for a service.
+
+See [Private Link and DNS integration at scale](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale) to help determine the right architecture for you.
+
 ## 8. Identity
 
 On the *Identity* blade you can specify if you want to assign recommended policies to govern identity and domain controllers. If you decide to enable this feature, you do need to provide an empty subscription for this. You can then select which policies you want to get assigned, and you will need to provide the address space for the virtual network that will be deployed on this subscription. Please note that this virtual network will be connected to the hub virtual network via VNet peering.
 
  ![img](./media/clip_image036c.png)
+
+In addition, if you are deploying an additional set of network resources in an additional region, you also have the option to deploy an additional Identity virtual network in that region.  It will be peered to the hub in your secondary region.
+
+![img](./media/clip_image085.png)
 
 ## 9. Landing zone configuration
 
